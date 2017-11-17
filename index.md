@@ -3,6 +3,7 @@
 
 
 Install MySQL
+
 1.We can install MySQL by using the apt package manager. First make sure your packages list are up to date. Open the terminal and run this apt command.
 
 	$ sudo apt-get update
@@ -26,13 +27,12 @@ To create a non-root user, connect to the MySQL instance with the mysql command 
  
  	$ mysql -u root -p
 
-
-
 It will ask for password (root password that you entered when installing)
+
 
 4.Now use the CREATE USER command to generate a new user. Make sure to change "userName" and "userPassword" with your own values.
 
-	$ CREATE USER 'userName'@'localhost' IDENTIFIED BY 		   'userPassword';
+	$ CREATE USER 'userName'@'localhost' IDENTIFIED BY 'userPassword';
 
 
 No output after the command is good - that means the command succeeded.
