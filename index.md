@@ -1,37 +1,76 @@
-## Welcome to GitHub Pages
+ Welcome to mysql installation in linux
+ How to Install and Use MySQL on Ubuntu 16.04
 
-You can use the [editor on GitHub](https://github.com/sathigit/mysql-installation-in-linux/edit/master/index.md) to maintain and preview the content for your website in Markdown files.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+Install MySQL
+1.We can install MySQL by using the apt package manager. First make sure your packages list are up to date. Open the terminal and run this apt command.
 
-### Markdown
+	$ sudo apt-get update
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
 
-```markdown
-Syntax highlighted code block
 
-# Header 1
-## Header 2
-### Header 3
 
-- Bulleted
-- List
+2.We need to install the mysql-server package, which downloads the required files, configures the initial database set up and handles running MySQL as a system service. Run this apt command to get the process started.
 
-1. Numbered
-2. List
+	$ sudo apt-get install mysql
 
-**Bold** and _Italic_ and `Code` text
+An administrative screen asking for a new root password will appear in the middle of the package installation process. Enter your chosen new password twice and the installation will continue.
 
-[Link](url) and ![Image](src)
-```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
 
-### Jekyll Themes
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/sathigit/mysql-installation-in-linux/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
 
-### Support or Contact
+3.Creating MySQL Users
 
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+To create a non-root user, connect to the MySQL instance with the mysql command line client.
+ 
+ 	$ mysql -u root -p
+
+
+
+It will ask for password (root password that you entered when installing)
+
+4.Now use the CREATE USER command to generate a new user. Make sure to change "userName" and "userPassword" with your own values.
+
+	$ CREATE USER 'userName'@'localhost' IDENTIFIED BY 		   'userPassword';
+
+
+No output after the command is good - that means the command succeeded.
+
+5.We need to apply privileges to the new user so it can handle basic database operations. Again, make sure to replace the default username in this command with your new username.
+
+	$ GRANT ALL PRIVILEGES ON * . * TO 'userName1'@'localhost';
+
+
+
+6.It's a good idea to reload the privileges to make sure our new user's permissions are in place.
+
+	$ FLUSH PRIVILEGES;
+
+
+New User Connection
+
+7.We're set to connect to the database with our new user. Exit the MySQL client with "Ctrl-d". Reconnect using a slightly different command than we used earlier.
+
+	$ mysql -u mynewuser -p
+
+8.Create a new database with the CREATE DATABASE command.
+
+	$ CREATE DATABASE amazon;
+
+9.Connect to the new database with the USE command.
+
+	$ use amazon;
+
+10.Create a simple new table with the CREATE TABLE command.
+
+	$ CREATE TABLE pages (name VARCHAR(50), url VARCHAR(100));
+
+
+
+
+
+
+
+
+
